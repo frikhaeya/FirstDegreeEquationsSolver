@@ -1,0 +1,283 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+const kMainColor = Colors.redAccent;
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: FirstDegreeEquations(),
+    );
+  }
+}
+
+class FirstDegreeEquations extends StatefulWidget{
+
+  @override
+  _FirstDegreeEquationsState createState() => _FirstDegreeEquationsState();
+}
+
+
+class _FirstDegreeEquationsState extends State<FirstDegreeEquations> {
+  int a = 1;
+  int b = 2;
+  Calculator ourCalculator = Calculator();
+  @override
+  Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+    return SafeArea(
+      child: Scaffold(
+          appBar: AppBar(
+            title: Text(
+                'First Degree Equations'
+            ),
+            backgroundColor: kMainColor,
+          ),
+          body :
+
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: screenHeight*2/100, horizontal: screenWidth*5/100),
+
+
+            child: Column(
+                children: [
+
+                Padding(
+                  padding: EdgeInsets.symmetric(vertical: screenHeight*2/100, horizontal: screenWidth*4/100),
+                  child: Container(
+
+                    height : screenHeight*8/100,
+                    decoration : const BoxDecoration (
+                      border : Border(
+                        top: BorderSide(width: 1.0, color: Color(0xFFFFFFFFFF)),
+                        left: BorderSide(width: 1.0, color: Color(0xFFFFFFFFFF)),
+                        right: BorderSide(width: 2.0, color: Color(0xFFFF000000)),
+                        bottom: BorderSide(width: 2.0, color: Color(0xFFFF000000)),
+                      ),
+
+
+                    ),
+                    child: Text(
+                      'Do You Want To Solve an "Ax + B = 0" Equation? ',
+                      textAlign: TextAlign.center,
+
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.blueGrey,
+                      ),
+                    ),
+                  ),
+                ),
+                  SizedBox(
+                    height : screenHeight*2/100,
+                  ),
+                  Container(
+
+                    decoration : const BoxDecoration (
+                    border : Border(
+                      top: BorderSide(width: 3.0, color: Color(0xFFFF000000)),
+                      left: BorderSide(width: 3.0, color: Color(0xFFFF000000)),
+                      right: BorderSide(width: 3.0, color: Color(0xFFFF000000)),
+                      bottom: BorderSide(width: 3.0, color: Color(0xFFFF000000)),
+                    ),
+                    borderRadius : BorderRadius.all (
+                        Radius.circular(10.0)
+                    ),
+                  ),
+
+                    height: screenHeight*15/100,
+                    alignment: Alignment.center,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text('X = ',
+                          style : TextStyle(
+                            color : Colors.blueGrey,
+                            fontSize: 30,
+                          ), ),
+                        Text('${ourCalculator.x}',
+                          style: TextStyle(
+                            color: Colors.blueGrey,
+                            fontSize: 30,
+                          ),),
+                      ],
+                    ),
+
+                  ),
+                  SizedBox(
+                    height : screenHeight*4/100,
+                  ),
+                Container(
+
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
+                      children: [
+                        Row(
+                          children :[
+                            Column (
+                              children :  [
+                        Card(
+                          child: Padding(
+                            padding: EdgeInsets.all(screenWidth*2/100),
+                            child: SizedBox(
+                              height: screenHeight*20/100,
+                              width :screenWidth*35/100,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text('Enter the First integer A:',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold,
+                                      color: kMainColor,
+                                    ),),
+                                  SizedBox(
+                                    height: screenHeight*10/100,
+                                    width: screenWidth*35/100,
+                                    child: TextField(
+                                      onChanged: (String value){
+                                        setState(() {
+                                          a = int.parse(value);
+                                        });
+                                      },
+                                    ),
+                                  ),
+
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                                SizedBox(
+                                  width: screenWidth*3/100,
+                                ),
+                                Card(
+                                  child: Padding(
+                                    padding: EdgeInsets.all(screenWidth*2/100),
+                                    child: SizedBox(
+                                      height: screenHeight*20/100,
+                                      width :screenWidth*35/100,
+
+                                      child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text('Enter the second integer B:',
+                                            textAlign: TextAlign.center,
+
+                                            style: TextStyle(
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.bold,
+                                              color: kMainColor,
+                                            ),),
+                                          SizedBox(
+                                            height: screenHeight*10/100,
+                                            width: screenWidth*35/100,
+                                            child: TextField(
+                                              onChanged: (String value){
+                                                setState(() {
+                                                  b = int.parse(value);
+                                                });
+                                              },
+                                            ),
+                                          ),
+
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+
+
+
+                              ],
+                            ),
+
+
+                            SizedBox(
+                              width : screenWidth*7.5/100,
+                            ),
+                            Container(
+                              decoration : const BoxDecoration (
+
+                                borderRadius : BorderRadius.all (
+                                    Radius.circular(30.0)
+                                ),
+                              ),
+                              height: screenHeight*45/100,
+                              width : screenWidth*40/100,
+                              child: MaterialButton(
+                                color: kMainColor,
+                                minWidth: screenWidth*90/100,
+                                child: Text(
+                                  'Calculate',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 20,
+                                  ),
+                                ),
+                                onPressed: (){
+                                  setState(() {
+                                    if (a == 0) {
+                                      String str = 'error';
+                                      print(str);
+                                    }
+                                    else {
+                                      ourCalculator.calculate(a, b);
+                                    }
+                                  }
+                                    );
+                                },
+                              ),
+                            ),
+
+
+
+
+
+                          ],
+
+
+
+
+                        ),
+
+                      ]
+                  ),
+                ),
+
+
+              ],
+            ),
+          ),
+      ),
+    );
+  }
+}
+
+
+class Calculator{
+  double x;
+
+  Calculator(){
+    x=0;
+  }
+
+  double calculate(int a, int b){
+
+  x = -b/a;
+  x = double.parse(x.toStringAsFixed(2));
+
+  return x ;
+}
+}
